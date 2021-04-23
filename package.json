@@ -1,0 +1,45 @@
+{
+  "name": "ic",
+  "version": "1.0.0",
+  "description": "Internation communications device",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node server/server.js",
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "cross-env NODE_ENV=development webpack serve --open"
+  },
+  "keywords": [
+    "messenger",
+    "translation",
+    "communication",
+    "mongo",
+    "css",
+    "react",
+    "auth",
+    "express"
+  ],
+  "author": "Joseph, Jenessa, Whit, Achille",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.5",
+    "path": "^0.12.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.3",
+    "redux": "^4.0.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.16",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.7",
+    "redux-devtools-extension": "^2.13.9",
+    "webpack": "^5.35.1",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
