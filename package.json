@@ -25,7 +25,6 @@
   "author": "Joseph, Jenessa, Whit, Achille",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^6.0.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.12.5",
@@ -40,9 +39,12 @@
     "@babel/preset-env": "^7.13.15",
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
+    "concurrently": "^6.0.2",
     "cross-env": "^7.0.3",
+    "css-loader": "^5.2.4",
     "nodemon": "^2.0.7",
     "redux-devtools-extension": "^2.13.9",
+    "style-loader": "^2.0.0",
     "webpack": "^5.35.1",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2"
