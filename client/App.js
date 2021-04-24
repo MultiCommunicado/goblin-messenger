@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import future components
-import Login from './components/Login.js';
-import Signup from './components/Signup.js';
+import MainContainer from './components/containers/MainContainer.js'
 
 class App extends Component {
     constructor(props) {
@@ -11,8 +10,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Login />
-                <Signup />
+                <MainContainer />
             </div>
         );
     }
