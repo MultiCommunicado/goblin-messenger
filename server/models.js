@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const MONGO_URI; /*URI to database here*/
+const MONGO_URI = "mongodb+srv://goblin:<password>@cluster0.kpvr3.mongodb.net/MultiCommunicado?retryWrites=true&w=majority"
 
 
 mongoose.connect(MONGO_URI, {
@@ -21,7 +21,7 @@ const sentMessageSchema = new Schema({
     recieverLang: {type: String, required: true},
     input: {type: String, required: true}
 });
-const sentMess = mongoose.model('sent_messages', sentMessageSchema);
+const SentMess = mongoose.model('sent_messages', sentMessageSchema);
 
 
 const transMessageSchema = new Schema({
@@ -29,27 +29,27 @@ const transMessageSchema = new Schema({
     recieverID: {type: String, required: true},
     input: {type: String, required: true}
 });
-const transMess = mongoose.model('trans_messages', transMessageSchema);
+const TransMess = mongoose.model('trans_messages', transMessageSchema);
 
 const userSchema = new Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true}
   });
   
-  const user = mongoose.model('User', userSchema);
+  const User = mongoose.model('User', userSchema);
 
   const sessionSchema = new Schema({
     cookieId: { type: String, required: true, unique: true },
     createdAt: { type: Date, expires: 30, default: Date.now }
   });
   
-  const session = mongoose.model('Session', sessionSchema);
+  const Session = mongoose.model('Session', sessionSchema);
 
 model.exports = {
-    sentMess,
-    transMess,
-    user,
-    session
+    SentMess,
+    TransMess,
+    User,
+    Session
 };
 
 
