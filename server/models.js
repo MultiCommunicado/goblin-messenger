@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-const MONGO_URI = "mongodb+srv://goblin:shark@cluster0.kpvr3.mongodb.net/Cluster0?retryWrites=true&w=majority"
+const MONGO_URI = "mongodb+srv://goblin:shark@cluster0.kpvr3.mongodb.net/MultiCommunicado?retryWrites=true&w=majority"
 
 
 
