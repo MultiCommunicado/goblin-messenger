@@ -2,42 +2,55 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const app = express();
-
+const mongoose = require('mongoose');
+const userController = require('./controllers/userController');
+const cookieController = require('./controllers/cookieController');
+const sessionController = require('./controllers/sessionController');
+const bodyParser = require('body-parser');
+// const cookieParser = require('cookie-parser');
 
 const PORT = 3000;
 
 app.use(cors());
 
-//route to handle the user creation requests
-app.post('/user/createUser', (req, res) =>{
-    
-});
-//route to handle login requests
-app.post('/user/login', (req, res) =>{
-    
-});
-//route to handle the creation, storage, translation and storage of translated messages
-app.post('/message/send', (req, res) =>{
-    
-});
-//route to handle the eventual requests for a users messages
-app.get('/message/recieve', (req, res) =>{
-    
+//** Automatically parse urlencoded body content from incoming requests and place it in req.body **//
+app.use(bodyParser.urlencoded({extended: true}));
+
+//** adds middleware to parse cookies from the HTTP request **//
+// app.use(cookieParser());
+
+//** Sign Up **//
+app.get ('/signup', (req, res) => {
+    res.render('./..client/signup', {error : null});
 });
 
-//route to handle getting user information
-app.get('/user', (req, res) =>{
-    
-})
+//** Signup **//
+app.post('/signup', 
+userController.createUser,
+sessionController.startSession,
+cookieController.setSSIDCookie,
+(req, res) => {
+    res.redirect('/secret');
+});
+
+//** Login **//
+app.post('/login', 
+userController.verifyUser,
+sessionController.startSession,
+cookieController.setSSIDCookie,
+(req, res) => {
+    res.redirect('/home');
+});
 
 //route handler to serve the basic file
 app.get('/', (req, res) => {
     return res.status(200).sendFile(path.join(__dirname, '../client/index.html')); 
 }); 
-//route handler for misplaced routes
-app.use((req, res) => res.status(404).send('No pants here'));
 
-//global error handler, use to send error messages from middleware to see where error occurs
+//** 404 error **//
+app.use('*', (req, res) => res.status(404).send('Not Found'));
+
+//** Global Error **//
 app.use((err, req, res, next) => {
     const defaultErr = {
       log: 'Express error handler caught unknown middleware error',
@@ -50,3 +63,5 @@ app.use((err, req, res, next) => {
   });
 
 app.listen(PORT, () =>{console.log(`Listening at port ${PORT}.`)});
+
+module.exports = app;

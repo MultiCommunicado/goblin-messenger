@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const MONGO_URI = "mongodb+srv://goblin:<password>@cluster0.kpvr3.mongodb.net/MultiCommunicado?retryWrites=true&w=majority"
+
+const MONGO_URI = "mongodb+srv://goblin:shark@cluster0.kpvr3.mongodb.net/Cluster0?retryWrites=true&w=majority"
+
 
 
 mongoose.connect(MONGO_URI, {
@@ -45,7 +46,7 @@ const userSchema = new Schema({
   
   const Session = mongoose.model('Session', sessionSchema);
 
-model.exports = {
+module.exports = {
     SentMess,
     TransMess,
     User,
