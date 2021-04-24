@@ -1,12 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 //have signup and password input field 
 //with "signup" button and signup link
+<<<<<<< HEAD
 //the two letter codes for the values of the selector are what are 
 //referred to as ISO language codes, specifically the 639-1 which specify how the API
 //knows what language the message sent is in, and what the recipient's language to translate to is
     class Signup extends Component {
+=======
+>>>>>>> main
 
+const Signup = props => (
+    <div className="Login">
+        <form method="POST" action='/signup'>
+            <input name="username" type="text" placeholder="username"></input>
+            <input name="password" type="password" placeholder="password"></input>
+            <label> Select your language 
+                <select className="Select" id="usersLanguage" name="usersLanguage" onChange="do something to handle change">
+                    <option value="EN"> English </option>
+                    <option value="SP"> Spanish </option>
+                    <option value="FR"> French </option>
+                </select>
+            </label>
+            <input  type="submit" value="Create User"></input>
+        </form>
+    </div>
+);
 
         render(){
 
