@@ -31,6 +31,7 @@ userController.verifyUser = (req, res, next) => {
     //hey go look in db for this username 
     const { username, password } = req.body;
     
+    
 };
 
 module.exports = userController;
