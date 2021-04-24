@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const MONGO_URI; /*URI to database here*/
+const MONGO_URI = ''; /*URI to database here*/
 
 
 mongoose.connect(MONGO_URI, {
@@ -45,7 +44,7 @@ const userSchema = new Schema({
   
   const session = mongoose.model('Session', sessionSchema);
 
-model.exports = {
+module.exports = {
     sentMess,
     transMess,
     user,
