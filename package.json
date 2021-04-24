@@ -10,7 +10,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MultiCommunicado/goblin-messenger.git",
+    "url": "git+https://github.com/MultiCommunicado/goblin-messenger.git"
+  },
   "keywords": [
     "messenger",
     "translation",
