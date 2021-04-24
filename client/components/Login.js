@@ -1,28 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 //have login and password input field 
 //with "login" button and signup link
-    class Login extends Component {
 
+const Login = props => (
+    <div className="Login">
+        <form method="POST" action='/login'>
+            <input name="username" type="text" placeholder="username"></input>
+            <input name="password" type="password" placeholder="password"></input>
+            <input  type="submit" value="login"></input>
+        </form>
+        <button onClick={props.onSignUpClick}>Sign up</button>
+    </div>
+);
 
-
-
-
-        render(){
-
-            return(
-
-                <div className="Login">
-                    <form method="POST" action='/login'>
-                        <input name="username" type="text" placeholder="username"></input>
-                        <input name="password" type="password" placeholder="password"></input>
-                        <input  type="submit" value="login"></input>
-                    </form>
-                    <a href='./signup'>Sign up</a>
-                </div>    
-
-
-            )
-        }
-    };
 export default Login; 
