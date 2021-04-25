@@ -11,10 +11,12 @@ const bodyParser = require('body-parser');
 
 const PORT = 3000;
 
-app.use(cors());
+// app.use(cors());
 
 //** Automatically parse urlencoded body content from incoming requests and place it in req.body **//
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(express.json());
 
 //** adds middleware to parse cookies from the HTTP request **//
 // app.use(cookieParser());
@@ -25,26 +27,40 @@ app.get ('/signup', (req, res) => {
 });
 
 //** Signup **//
+//when signup buttong is triggered, lanches a post req;
 app.post('/signup', 
-userController.createUser,
-sessionController.startSession,
-cookieController.setSSIDCookie,
-(req, res) => {
-    res.redirect('/secret');
+    //first go to the create user middleware
+    userController.createUser,
+    //then go to start session
+    sessionController.startSession,
+    // then set cookie
+    cookieController.setSSIDCookie,
+    (req, res) => {
+        //once all the above is complete, respond with redirecting to main message page
+        res.redirect('/');
 });
 
 //** Login **//
+//when login button is triggered, launch post req
 app.post('/login', 
+    //first go check and make sure this username exsist, and password matches
 userController.verifyUser,
+    //then go to start session
+
 sessionController.startSession,
+    // then set cookie
+
 cookieController.setSSIDCookie,
 (req, res) => {
-    res.redirect('/home');
+    //not going to redirect, send a response of user info
+    res.redirect('/');
 });
 
 //route handler to serve the basic file
 app.get('/', (req, res) => {
+    //check for session, if session is active
     return res.status(200).sendFile(path.join(__dirname, '../client/index.html')); 
+    //if session is not active, then redirect to ./login
 }); 
 
 //** 404 error **//
