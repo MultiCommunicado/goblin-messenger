@@ -7,8 +7,9 @@ export const loggedinState = (info) => ({
 })
 
 // action to login user
-export const login = () => ({
-    type: types.LOGIN
+export const login = (user) => ({
+    type: types.LOGIN,
+    payload: user
 })
 
 

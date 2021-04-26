@@ -33,8 +33,6 @@ class MainContainer extends Component {
         newUser.username = username.value;
         newUser.password = password.value;
         newUser.language = language.value;
-        username.value = '';
-        password.value = '';
         console.log(newUser)
         fetch('/signup', {
             method: 'POST',
@@ -50,6 +48,8 @@ class MainContainer extends Component {
             this.props.nowLoggedIn()
             this.props.login(data.user)
             console.log(this.props.user)
+            username.value = '';
+            password.value = '';
             // console.log(data)
         })
         .catch(err => console.log('Error creating new user! ERROR: ', err));
@@ -61,8 +61,6 @@ class MainContainer extends Component {
         const user = {};
         user.username = username.value;
         user.password = password.value;
-        username.value = '';
-        password.value = '';
         fetch('/login', {
             method: 'POST',
             headers: {
@@ -76,10 +74,12 @@ class MainContainer extends Component {
             if (data.noMatch) {this.props.nowLoggedIn('wrongPassword')}
             else if (data.userUnknown) {this.props.nowLoggedIn('unknownUser')}
             else {
+                username.value = '';
+                password.value = '';
                 this.props.nowLoggedIn('true')
                 this.props.login(data.user)
             }
-            console.log('current user ', user)
+            console.log('current user ', this.props.user)
         })
         .catch(err => console.log('Error logging in user! ERROR: ', err));
     }

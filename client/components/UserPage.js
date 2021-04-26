@@ -43,7 +43,7 @@ const UserPage = props => {
                 <button onClick={() => props.newView('userpage')}>My messages</button>
             </div>
             <div>
-                {content}test
+                {content}
             </div>
         </div>
     );
