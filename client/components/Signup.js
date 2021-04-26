@@ -11,11 +11,12 @@ const Signup = props => (
             <input name="username" type="text" placeholder="username"></input>
             <input name="password" type="password" placeholder="password"></input>
             <label> Select your language 
-                <select className="Select" id="usersLanguage" name="usersLanguage" onChange="do something to handle change">
+                <select className="Select" id="usersLanguage" name="language">
                     <option value="en"> English </option>
                     <option value="fr"> French </option>
                     <option value="ko"> Korean </option>
                     <option value="es"> Spanish </option>
+                    <option value="ja"> Japanese </option>
                     <option value="ru"> Russian </option>
                     <option value="tr"> Turkish </option>
                     <option value="hi"> Hindi </option>
