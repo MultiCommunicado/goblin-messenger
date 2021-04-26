@@ -1,3 +1,20 @@
 body {
-    background: grey;
+    text-decoration: none;
+    margin: 0px;
+    background: linear-gradient(30deg, rgba(18,12,134,1) 0%, rgba(99,103,194,1) 50%, rgba(255,255,255,1) 100%);
+}
+
+.loginSignup {
+    font-family: 'Trebuchet MS';
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginSignupForm {
+    background: whitesmoke;
+    padding: 10px 50px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 10px 5px rgb(42, 65, 143) inset;
 }
