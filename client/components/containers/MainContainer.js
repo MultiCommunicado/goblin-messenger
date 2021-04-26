@@ -5,6 +5,7 @@ import * as actions from '../../state/actions/actions.js';
 import { connect } from 'react-redux';
 
 const mapStateToProps = store => ({
+    user: store.message.user,
     loggedIn: store.message.login_state,
     signingUp: store.message.signup_state
 })
@@ -19,28 +20,33 @@ const dispatchStateToProps = dispatch => ({
 class MainContainer extends Component {
     constructor(props) {
         super(props)
-        this.onSignUpClick = this.onSignUpClick.bind(this);
+        this.userSignedUp = this.userSignedUp.bind(this);
         this.onLoginClick = this.onLoginClick.bind(this);
     }
 
-    onSignUpClick() {
-        this.props.nowSigningUp(true);
+    userSignedUp() {
+        console.log(document.forms['signup'].elements);
     }
 
     onLoginClick() {
-
+        // endpoint: /login (post) /signup (post)
+        // {
+        //     username:
+        //     password:
+        //     language:
+        // }
     }
 
     render() {
         if (this.props.signingUp) {
             // return signup page
-            return (<Signup />)
+            return (<Signup signup={this.userSignedUp}/>)
         }
         if (this.props.loggedIn) {
             // return messenger container
         } else {
             // return login page
-            return (<Login onSignUpClick={this.onSignUpClick}/>)
+            return (<Login onSignUpClick={this.props.nowSigningUp}/>)
         }
 
     }
