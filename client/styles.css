@@ -1,28 +1,277 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 body {
+    color: #c4d0f0;
     text-decoration: none;
     margin: 0px;
     background: linear-gradient(30deg, rgba(18,12,134,1) 0%, rgba(99,103,194,1) 50%, rgba(255,255,255,1) 100%);
 }
 
 .loginSignup {
-    font-family: 'Trebuchet MS';
-    margin-top: 10%;
+    margin-top: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.loginSignupForm {
+
+.loginSignupForm  {
+    margin: 0px auto;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
     background: whitesmoke;
     padding: 10px 50px;
     border-radius: 25px;
     box-shadow: 0px 0px 10px 5px rgb(42, 65, 143) inset;
+    box-sizing: border-box;
+}
+
+.loginsignuppage img {
+    margin: 0px auto;
+    margin-top: 100px;
+    min-width: 579px;
+    min-height: 200px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 5px rgb(42, 65, 143);
+    display: block;
+    width: 50%;
+}
+
+.userPageLogo img { 
+    margin: 50px auto;
+    width: 217px;
+    height: 75px;
+    border-radius: 8px;
+    /* box-shadow: 0px 0px 10px 5px rgb(42, 65, 143); */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    display: block;
+   
+}
+
+.loginInput {
+    margin: 0px auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 16px;
+    padding: 10px 50px;
+    /* padding:  5%; */
+    font-family: 'Montserrat', sans-serif;
 }
 
 .inputForm {
-    margin: 10px;
+    margin: 0px auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 16px;
+    padding: 10px 50px;
+    /* padding:  5%; */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.inputForm::placeholder {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+}
+
+.messageInput {
+    margin: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 450px;
+    height: 250px;
+    font-size: 16px;
+    padding: 10px 50px;
+    text-align: center;
+
+}
+
+.loginSignupButton {
+    margin: 10px 20px;
+    justify-content: center;
+    background-color: #5d7bcc; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.loginSignupButton:hover {
+    background-color: transparent; 
+    border-color: #5d7bcc;
+    color: #5d7bcc;
 }
 
 .info {
+    margin: 0px;
+    margin-bottom: 10px;
     color: red;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
+
+.infoGood {
+    margin: 0px;
+    margin-bottom: 10px;
+    color: green;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.userPageContainer {
+    font-size: medium;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+}
+
+.newMessage {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.userNavBarButton {
+    margin: 10px;
+    justify-content: center;
+    background-color: #5d7bcc; 
+    border: solid;
+    border: none;
+    color: white;
+    padding: 11.25px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+    /* box-shadow: 0px 0px 10px 5px rgb(42, 65, 143); */
+
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    transition-duration: 0.4s;
+}
+
+.userNavBarButton:hover {
+    background-color: whitesmoke; 
+    border-color: #5d7bcc;
+    color: #5d7bcc;
+
+}
+
+.logoutButton {
+    margin: 10px;
+    justify-content: center;
+    background-color: #5d7bcc; 
+    border: solid;
+    border: none;
+    color: white;
+    padding: 11.25px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+    /* box-shadow: 0px 0px 10px 5px rgb(42, 65, 143); */
+
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    transition-duration: 0.4s;
+}
+
+.logoutButton:hover {
+    background-color: #df5210; 
+    border-color: #df5210;
+}
+
+.sendButton {
+    margin: 10px;
+    justify-content: center;
+    background-color: #5d7bcc; 
+    border: solid;
+    border: none;
+    color: white;
+    padding: 11.25px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+    /* box-shadow: 0px 0px 10px 5px rgb(42, 65, 143); */
+
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    transition-duration: 0.4s;
+}
+
+.sendButton:hover {
+    background-color: rgb(34, 226, 130); 
+    border-color: #5d7bcc;
+}
+
+.emptyMessages {
+    font-weight: normal;
+    padding: 10%;
+    margin-top: 10%;
+}
+.senderName {
+    font-weight: normal;
+    padding: 5%;
+    padding-bottom: 1%;
+}
+.messageBox {
+    padding: 15%;
+    background-color: whitesmoke;
+    border-radius: 12px;
+    width: 40%;
+    min-width: 200px;
+	display: flex;
+    flex-direction: row;
+    justify-self: center;
+	margin: 0 auto;
+}
+.message {
+    font-weight: bolder;
+    color: rgb(42, 65, 143);
+    text-align: center;
+}
+
+.pointer {
+	height: 30px;
+	width: 30px;
+	background: whitesmoke;
+	margin: 0 auto;
+	transform: rotate(45deg);
+	border-radius: 0 0 4px 0;
+	margin-top: -22px;
+	position: relative;
+	left: calc(0.5vw - 50px);
+}
+

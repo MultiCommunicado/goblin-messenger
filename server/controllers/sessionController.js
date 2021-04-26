@@ -22,19 +22,26 @@ sessionController.isLoggedIn = (req, res, next) => {
 sessionController.startSession = (req, res, next) => {
   console.log("now in Session Creator")
   if (!res.locals.user) return next();
-  try {
-    Session.create({ cookieID: res.locals.user._id }, (err, session) => {
-      console.log(`this is the session reponse from the db: ${session}`)
-      if (err) {
-        console.log(err);
-        return next(`Error in sessionController.startSession: ${err}`); 
-      }
-      return next();
-    })
-  } catch (error) {
-    console.log('duplicate key, skipping ', error)
-    next();
-  }
+  if (!session) { try {
+      Session.update({ cookieID: res.locals.user._id }, {upsert: true}, (err, session) => {
+        console.log(`this is the session reponse from the db: ${session}`)
+        if (err) {
+          console.log(err);
+          return next(`Error in sessionController.startSession: ${err}`); 
+        }
+        return next();
+      })
+    } catch (error) {
+    if (err){
+      console.log('duplicate key, skipping ', error)
+      next();
+    }}
+  } else next();
 };
+
+sessionController.endSession = (req, res, next) => {
+  Session.deleteOne({cookieID: req.cookies.ssid});
+  next();
+}
  
 module.exports = sessionController;

@@ -7,7 +7,8 @@ const initialState = {
     signup_state: null,
     info: null,
     messages: {},
-    view: 'userpage'
+    view: 'userpage',
+    user_info: null
 }
 
 const mainReducer = (state = initialState, action) => {
@@ -15,6 +16,8 @@ const mainReducer = (state = initialState, action) => {
     let login_state;
     let user;
     let view;
+    let messages;
+    let user_info;
 
     switch (action.type) {
 
@@ -31,10 +34,15 @@ const mainReducer = (state = initialState, action) => {
 
         case types.LOGIN:
             // login user
-            const { _id, username } = action.payload;
-            user = { _id: _id, username: username }
+            const { _id, username, language } = action.payload.user;
+            const resMessages = action.payload.messages;
+            messages = resMessages;
+            login_state = 'true';
+            user = { _id: _id, username: username, language: language };
             return {
                 ...state,
+                messages,
+                login_state,
                 user
             }
 
@@ -61,6 +69,20 @@ const mainReducer = (state = initialState, action) => {
                 ...state,
                 view
             }
+
+        case types.USER_INFO:
+        user_info = action.payload;
+        return {
+            ...state,
+            user_info
+        }
+
+        case types.UPDATE_MESSAGES:
+        messages = action.payload;
+        return {
+            ...state,
+            messages
+        }
 
         default:
             return state;

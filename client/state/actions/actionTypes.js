@@ -3,3 +3,5 @@ export const LOGIN_STATE = "LOGIN_STATE";
 export const SIGNUP = "SIGNUP";
 export const SIGNUP_STATE = "SIGNUP_STATE";
 export const VIEW = "VIEW";
+export const USER_INFO = "USER_INFO";
+export const UPDATE_MESSAGES = "UPDATE_MESSAGES";

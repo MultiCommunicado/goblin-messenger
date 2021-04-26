@@ -33,7 +33,6 @@ class MainContainer extends Component {
         newUser.username = username.value;
         newUser.password = password.value;
         newUser.language = language.value;
-        console.log(newUser)
         fetch('/signup', {
             method: 'POST',
             headers: {
@@ -44,13 +43,10 @@ class MainContainer extends Component {
         .then(resp => resp.json())
         .then(data => {
             //check if user created succesfully, then login
-            
-            this.props.nowLoggedIn()
-            this.props.login(data.user)
-            console.log(this.props.user)
+            this.props.login(data);
+            console.log(this.props.loggedIn)
             username.value = '';
             password.value = '';
-            // console.log(data)
         })
         .catch(err => console.log('Error creating new user! ERROR: ', err));
     }
@@ -71,13 +67,13 @@ class MainContainer extends Component {
         .then(resp => resp.json())
         .then(data => {
             //check if user verified succesfully, then login
+            console.log(data)
             if (data.noMatch) {this.props.nowLoggedIn('wrongPassword')}
             else if (data.userUnknown) {this.props.nowLoggedIn('unknownUser')}
             else {
                 username.value = '';
                 password.value = '';
-                this.props.nowLoggedIn('true')
-                this.props.login(data.user)
+                this.props.login(data)
             }
             console.log('current user ', this.props.user)
         })
@@ -85,13 +81,14 @@ class MainContainer extends Component {
     }
 
     render() {
-        if (this.props.signingUp) {
-            // return signup page
-            return (<Signup signup={this.userSignedUp}/>)
-        }
+        console.log('rerendering')
         if (this.props.loggedIn === 'true') {
             // return messenger container
             return (<MessageContainer />)
+        }
+        if (this.props.signingUp) {
+            // return signup page
+            return (<Signup signup={this.userSignedUp}/>)
         } else {
             // return login page
             return (<Login info={this.props.loggedIn} onSignUpClick={this.props.nowSigningUp} submitLogin={this.userLoggedIn}/>)
