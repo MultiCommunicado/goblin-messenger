@@ -31,6 +31,26 @@ app.get ('/signup', (req, res) => {
     res.render('./..client/signup', {error : null});
 });
 
+//
+app.get ('/messages', 
+    //gets user info based on the cookie associated with get request
+    cookieController.findUserByCookie, 
+    //uses user info from previous middleware to 
+    translationController.getMessages, 
+    //sends along pertinent info
+    (req, res) =>{
+        res.status(200).json(res.locals);
+})
+
+//logout route to end session and clear cookie
+app.get ('/signout', 
+    //this should end the session, but we don't have any calls coming here as of now
+    sessionController.endSession,
+    //anon function should clear the cookie associated with the page
+    (req, res) =>{
+        res.clearCookie('ssid');
+})
+
 //** Signup **//
 //when signup buttong is triggered, lanches a post req;
 app.post('/signup', 
@@ -40,9 +60,11 @@ app.post('/signup',
     sessionController.startSession,
     // then set cookie
     cookieController.setSSIDCookie,
+    // get sent message data
+    translationController.getMessages,
     (req, res) => {
         //once all the above is complete, respond with redirecting to main message page
-        res.redirect('/');
+        res.status(200).json(res.locals);
 });
 
 //** Login **//
@@ -52,7 +74,7 @@ app.post('/login',
 userController.verifyUser,
     //then go to start session
 
-sessionController.startSession,
+// sessionController.startSession,
     // then set cookie
 
 cookieController.setSSIDCookie,
@@ -69,10 +91,21 @@ translationController.getMessages,
 
 
 //**  Message Submit for database storage and translation  **/
-app.post('/send', translationController.createSentMessage, translationController.sendForTranslation, translationController.createTranslatedMessage, (req, res) =>{
-    console.log('anonymous function fired');
-    res.sendStatus(200);
+app.post('/send', 
+    //middleware that checks the message, and stores it pre translation if entry is good
+    translationController.createSentMessage, 
+    //middleware that translates the message if need be and stores it in locals
+    translationController.sendForTranslation, 
+    //middleware that stores the translated message
+    translationController.createTranslatedMessage, 
+    //middleware that grabs the new message list to allow state to update with response
+    translationController.getMessages,
+    //anon function that sends the response
+    (req, res) =>{
+        res.status(200).json(res.locals);
 })
+
+// route handler to delete sessions and remove cookies
 
 //route handler to serve the basic file
 app.get('/', (req, res) => {

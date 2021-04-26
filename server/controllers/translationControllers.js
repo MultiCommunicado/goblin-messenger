@@ -29,29 +29,48 @@ async function textTranslate(text, target) {
 //request body coming in should be formatted this way for code to work
 /* {
     id: the Id of the user sending the message
-    targetUsername: the message recipient's username,
+    senderUsername: the message sender's username
+    targetUsername: the message recipient's username
     language: the language code assigned from the initial sender
     message: the actual text to translate
 }*/
 translationController.createSentMessage = async (req, res, next) => {
     console.log('createSent fired');
-    console.log(req.body);
+    console.log(req.body.message);
+    //conditional to make sure that the request wasn't sent with any required fields empty
+    if (req.body.message == ""){
+        res.locals.noMessage = true;
+        return res.status(200).json(res.locals);
+    }
+    if (req.body.targetUsername == ""){
+        res.locals.noRecipient = true;
+        return res.status(200).json(res.locals);
+    }
     // this gets the target, or reciever's info like language, id, etc.
     await User.findOne({username: req.body.targetUsername})
       .then((response) =>{
-          res.locals.target = response;
-          SentMess.create({
-            senderId: req.body.id,
-            senderLang: req.body.language,
-            recieverId: res.locals.target._id,
-            recieverLang: res.locals.target.language,
-            input: req.body.message
-        })
-        .then((newSentMess) => {
-            //store the newly created message in locals to be able to send to the API for translation
-          res.locals.sentMess = newSentMess;
-          next();
-      })
+          //check to see if the inputted username is contained in database,
+          //if not send back something to say hey nothing found
+          if(!response){
+              res.locals.userNotFound = true;
+              return res.status(200).json(res.locals);
+          } else {
+            res.locals.target = response;
+            SentMess.create({
+                senderId: req.body.id,
+                senderLang: req.body.language,
+                senderUsername: req.body.senderUsername,
+                receiverUsername: res.locals.target.username,
+                receiverId: res.locals.target._id,
+                receiverLang: res.locals.target.language,
+                input: req.body.message
+              })
+              .then((newSentMess) => {
+                  //store the newly created message in locals to be able to send to the API for translation
+                  res.locals.sentMess = newSentMess;
+                  next();
+                })
+            }
       })
       .catch((err)=>{
          if (err)next({
@@ -64,8 +83,14 @@ translationController.createSentMessage = async (req, res, next) => {
 //this should result in a useable message being returned to the server to be stored in a translated message database
 //should also check to make sure that it knows what language the message sent should be sent in
 translationController.sendForTranslation = async (req, res, next) => {
-    res.locals.translation = await textTranslate(res.locals.sentMess.input, res.locals.target.language)
-    next();
+    //check to see if translation is necessary, if not just pass along message
+    if (res.locals.target.language === req.body.language){
+        res.locals.translation = req.body.message;
+        next();
+    } else {
+        res.locals.translation = await textTranslate(res.locals.sentMess.input, res.locals.target.language)
+        next();
+    }
 }
 
 //the middleware that will handle the creation of the translated message entry in the databse
@@ -76,10 +101,13 @@ translationController.createTranslatedMessage = async (req, res, next) => {
     TransMess.create({
         senderId: req.body.id,
         senderLang: req.body.language,
-        recieverId: res.locals.target._id,
-        recieverLang: res.locals.target.language,
+        senderUsername: req.body.senderUsername,
+        receiverUsername: res.locals.target.username,
+        receiverId: res.locals.target._id,
+        receiverLang: res.locals.target.language,
         input: res.locals.translation
     })
+    res.locals.user = res.locals.target;
     next();
 }
 
@@ -89,12 +117,13 @@ translationController.createTranslatedMessage = async (req, res, next) => {
 translationController.getMessages = async (req, res, next) => {
     if(res.locals.user){
         res.locals.messages = {};
-        res.locals.messages.recieved = await TransMess.find({recieverId: res.locals.user._id});
+        res.locals.messages.received = await TransMess.find({receiverId: res.locals.user._id});
         res.locals.messages.sent = await SentMess.find({senderId: res.locals.user._id});
         return next();
     } else{
         next();
     }
 }
+
 
 module.exports = translationController;

@@ -30,4 +30,16 @@ export const view = (view) => ({
     payload: view
 })
 
+// action to change infobox
+export const userInfo = (info) => ({
+    type: types.USER_INFO,
+    payload: info
+})
+
+// action to change infobox
+export const updateMessages = (messages) => ({
+    type: types.UPDATE_MESSAGES,
+    payload: messages
+})
+
 // more functions

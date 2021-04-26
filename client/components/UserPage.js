@@ -1,50 +1,55 @@
 import React from 'react';
 import NewMessage from './NewMessage';
 import MessageBox from './MessageBox';
+import logo from '../logo.png';
+
 
 const UserPage = props => {
     let content = [];
-    console.log('Entered view switch: ', props)
     switch (props.view) {
         case "userpage":
-            if (!props.messages.received) {
-                console.log("view: userpage")
-                content.push(<div>Loading received messages...</div>)
+            if (props.messages.received.length===0) {
+                content.push(<div className="emptyMessages" >You have no messages!</div>)
                 break;
             }
-            for (let i = 0; i > props.messages.received; i++) {
-                content.push(<MessageBox id={i} message={props.messages.received[i]}/>)
+            console.log(props.messages.received)
+            for (let i = 0; i < props.messages.received.length; i++) {
+                content.push(<MessageBox id={i} username={'From: ' + props.messages.received[i].senderUsername} message={props.messages.received[i]}/>)
             }
             break;
         case "sentmessages":
-            console.log("view: sent")
             //check if messages have arrived
-            if (!props.messages.sent) {
-                content.push(<div>Loading sent messages...</div>)
+            if (props.messages.sent.length===0) {
+                content.push(<div className="emptyMessages" >You haven't sent any messages yet! Send a new message above!</div>)
                 break;
             }
             // create a new message for every message received
-            for (let i = 0; i > props.messages.sent; i++) {
-                content.push(<MessageBox id={i} message={props.messages.sent[i]}/>)
+            for (let i = 0; i < props.messages.sent.length; i++) {
+                content.push(<MessageBox id={i} username={'To: ' + props.messages.sent[i].receiverUsername} message={props.messages.sent[i]}/>)
             }
             break;
         case "newmessage":
-            console.log("view: new")
-            content.push(<NewMessage />);
+            content.push(<NewMessage key={900} info={props.info} key={999} id="newmsg" send={props.send}/>);
         default:
             break;
     }
     return (
-        <div className="userPageContainer">
-            <div className="userNavBar">
-                <button onClick={() => props.logout(null)}>Logout</button>
-                <button onClick={() => props.newView('newmessage')}>Send a new message</button>
-                <button onClick={() => props.newView('sentmessages')}>View sent messages</button>
-                <button onClick={() => props.newView('userpage')}>My messages</button>
-            </div>
+        <div>
+        <div className="userPageLogo"> 
+            <img id="userPageLogo" src={logo} alt="Multicommunicado"/>
+        </div>
+            <div className="userPageContainer">
+                
+                <div className="userNavBar">
+                <button className="logoutButton" onClick={() => props.logout(null)}>Logout</button>
+                <button className="userNavBarButton" onClick={() => props.newView('newmessage')}>Create New</button>
+                <button className="userNavBarButton" onClick={props.sentMessagesClick}>Sent Messages</button>
+                <button className="userNavBarButton" onClick={props.myMessagesClick}>My messages</button>
+                </div>
             <div>
                 {content}
             </div>
+        </div>
         </div>
     );
 }

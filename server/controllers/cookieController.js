@@ -1,4 +1,5 @@
 const cookieController = {};
+const { User } = require('./../models.js');
 
 // store the user id in a cookie for auth
 cookieController.setSSIDCookie = (req, res, next) => {
@@ -13,5 +14,18 @@ cookieController.setSSIDCookie = (req, res, next) => {
     console.log(`This is the response for the set cookie from the db ${res.locals.user} `);
     return next();
 };
+
+cookieController.findUserByCookie = (req, res, next) => {
+    User.findOne({_id: req.cookies.ssid})
+      .then((response) => res.locals.user = response)
+      .then(next())
+      .catch((err)=>{
+          if (err) return next({
+            log: `cookieController.findUserByCookie: ERROR: Did not properly find user by cookie`,
+            message: { err: 'cookieController.findUserByCookie: ERROR: Check server logs for details' }
+        })
+    })
+}
+
 
 module.exports = cookieController;

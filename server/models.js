@@ -19,8 +19,10 @@ const Schema = mongoose.Schema;
 const sentMessageSchema = new Schema({
     senderId: {type: String, required: true},
     senderLang: {type: String, required: true},
-    recieverId: {type: String, required: true},
-    recieverLang: {type: String, required: true},
+    senderUsername: {type: String, required: true},
+    receiverUsername: {type: String, required: true},
+    receiverId: {type: String, required: true},
+    receiverLang: {type: String, required: true},
     input: {type: String, required: true}
 });
 const SentMess = mongoose.model('sent_messages', sentMessageSchema);
@@ -29,8 +31,10 @@ const SentMess = mongoose.model('sent_messages', sentMessageSchema);
 const transMessageSchema = new Schema({
     senderId: {type: String, required: true},
     senderLang: {type: String, required: true},
-    recieverId: {type: String, required: true},
-    recieverLang: {type: String, required: true},
+    senderUsername: {type: String, required: true},
+    receiverUsername: {type: String, required: true},
+    receiverId: {type: String, required: true},
+    receiverLang: {type: String, required: true},
     input: {type: String, required: true}
 });
 const TransMess = mongoose.model('trans_messages', transMessageSchema);
