@@ -45,6 +45,8 @@
     "concurrently": "^6.0.2",
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.4",
+    "file-loader": "^6.2.0",
+    "image-webpack-loader": "^7.0.1",
     "nodemon": "^2.0.7",
     "redux-devtools-extension": "^2.13.9",
     "style-loader": "^2.0.0",
