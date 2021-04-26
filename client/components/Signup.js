@@ -6,13 +6,14 @@ import React from 'react';
 //referred to as ISO language codes, specifically the 639-1 which specify how the API
 //knows what language the message sent is in, and what the recipient's language to translate to is
 const Signup = props => (
-    <div className="Login">
-        <form method="POST" action='/signup'>
-            <input name="username" type="text" placeholder="username"></input>
-            <input name="password" type="password" placeholder="password"></input>
-            <label> Select your language 
+    <div className="loginSignup">
+        <div className="loginSignupForm">
+            <form method="POST" action='/signup'>
+                <h1>Signup</h1>
+                <input name="username" type="text" placeholder="username"></input><br/>
+                <input name="password" type="password" placeholder="password"></input><br/>
                 <select className="Select" id="usersLanguage" name="language">
-                    <option value="en"> English </option>
+                <option value="en"> English </option>
                     <option value="fr"> French </option>
                     <option value="ko"> Korean </option>
                     <option value="es"> Spanish </option>
@@ -32,9 +33,9 @@ const Signup = props => (
                     <option value="hu"> Hungarian </option>
                     <option value="it"> Italian </option>
                 </select>
-            </label>    
-            <input  type="submit" value="Create User"></input>
-        </form>
+                <input  type="submit" value="Create User"></input>
+            </form>
+        </div>
     </div>
 );
 
