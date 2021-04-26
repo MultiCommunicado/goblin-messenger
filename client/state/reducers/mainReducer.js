@@ -3,8 +3,8 @@ import * as types from '../actions/actionTypes.js';
 
 const initialState = {
     user: null,
-    login_state: false,
-    signup_state: false
+    login_state: null,
+    signup_state: null
 }
 
 const mainReducer = (state = initialState, action) => {
@@ -30,7 +30,7 @@ const mainReducer = (state = initialState, action) => {
         case types.SIGNUP_STATE:
             // user wants to signup
             const signup_state = action.payload;
-            console.log('changing signup state to ', action.payload)
+            // console.log('changing signup state to ', action.payload)
             return {
                 ...state,
                 signup_state
