@@ -4,7 +4,7 @@ console.log("cool, now we're in the models.js file")
 
 const MONGO_URI = "mongodb+srv://goblin:shark@cluster0.kpvr3.mongodb.net/MultiCommunicado?retryWrites=true&w=majority"
 
-console.log("we made it poast the db declaration")
+console.log("we made it past the db declaration")
 
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,

@@ -3,6 +3,11 @@ const { Translate } = require('@google-cloud/translate').v2;
 const path = require('path');
 const translationController = {};
 const projectId = '106748634897244400754';
+//the service account file is the file associated with the project on Whit's google drive account
+//get in contact with him to figure out how to get a copy that won't be put on github for security reasons
+//or to start your own account and set up the serviceAccountFile
+//just make sure to not go over 500,000 characters translated, which I know is a lot
+//but just try to avoid sending looping calls to translate, ya feel?
 const keyFilename = path.resolve(__dirname, './../serviceAccountFile.json')
 const tranlsate = new Translate({projectId, keyFilename});
 
@@ -31,6 +36,7 @@ async function textTranslate(text, target) {
 translationController.createSentMessage = async (req, res, next) => {
     console.log('createSent fired');
     console.log(req.body);
+    // this gets the target, or reciever's info like language, id, etc.
     await User.findOne({username: req.body.targetUsername})
       .then((response) =>{
           res.locals.target = response;
@@ -43,7 +49,6 @@ translationController.createSentMessage = async (req, res, next) => {
         })
         .then((newSentMess) => {
             //store the newly created message in locals to be able to send to the API for translation
-            console.log(newSentMess);
           res.locals.sentMess = newSentMess;
           next();
       })
@@ -59,7 +64,6 @@ translationController.createSentMessage = async (req, res, next) => {
 //this should result in a useable message being returned to the server to be stored in a translated message database
 //should also check to make sure that it knows what language the message sent should be sent in
 translationController.sendForTranslation = async (req, res, next) => {
-    console.log('translate fired');
     res.locals.translation = await textTranslate(res.locals.sentMess.input, res.locals.target.language)
     next();
 }
@@ -77,6 +81,20 @@ translationController.createTranslatedMessage = async (req, res, next) => {
         input: res.locals.translation
     })
     next();
+}
+
+// this will get the messages that have been sent to the user and translated
+// as well as the messages that the user has sent pre translation.  
+
+translationController.getMessages = async (req, res, next) => {
+    if(res.locals.user){
+        res.locals.messages = {};
+        res.locals.messages.recieved = await TransMess.find({recieverId: res.locals.user._id});
+        res.locals.messages.sent = await SentMess.find({senderId: res.locals.user._id});
+        return next();
+    } else{
+        next();
+    }
 }
 
 module.exports = translationController;
