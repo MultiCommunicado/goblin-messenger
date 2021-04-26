@@ -56,9 +56,15 @@ sessionController.startSession,
     // then set cookie
 
 cookieController.setSSIDCookie,
-(req, res) => 
+
+    // then get the translated message data for the user
+
+translationController.getMessages,
+
+(req, res) => {
     //not going to redirect, send a response of user info
-    res.status(200).json(res.locals)
+    res.status(200).json(res.locals);
+    }
 );
 
 
