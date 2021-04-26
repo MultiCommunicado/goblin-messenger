@@ -18,12 +18,12 @@ userController.getAllUsers = (req, res, next) => {
 
 userController.createUser = async (req, res, next) => {
     console.log(req.body)
-    const { username, password } = req.body;
+    const { username, password, language } = req.body;
     if( !username || !password) return next ('Missing username or password in userController.createUser.');
 
     try {
         console.log(`we're in the userController try statement`)
-        const newUser = await User.create({ username, password });
+        const newUser = await User.create({ username, password, language });
         res.locals.user = newUser;
         return next();
     }   catch (err) {

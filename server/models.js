@@ -17,9 +17,9 @@ mongoose.connect(MONGO_URI, {
 const Schema = mongoose.Schema;
 
 const sentMessageSchema = new Schema({
-    senderID: {type: String, required: true},
+    senderId: {type: String, required: true},
     senderLang: {type: String, required: true},
-    recieverID: {type: String, required: true},
+    recieverId: {type: String, required: true},
     recieverLang: {type: String, required: true},
     input: {type: String, required: true}
 });
@@ -27,15 +27,18 @@ const SentMess = mongoose.model('sent_messages', sentMessageSchema);
 
 
 const transMessageSchema = new Schema({
-    senderID: {type: String, required: true},
-    recieverID: {type: String, required: true},
+    senderId: {type: String, required: true},
+    senderLang: {type: String, required: true},
+    recieverId: {type: String, required: true},
+    recieverLang: {type: String, required: true},
     input: {type: String, required: true}
 });
 const TransMess = mongoose.model('trans_messages', transMessageSchema);
 
 const userSchema = new Schema({
     username: {type: String},
-    password: {type: String}
+    password: {type: String},
+    language: {type: String}
     // username: {type: String, required: true, unique: true},
     // password: {type: String, required: true}
   });

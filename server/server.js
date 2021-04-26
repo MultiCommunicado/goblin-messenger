@@ -3,6 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
+const translationController = require('./controllers/translationControllers');
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController');
 const sessionController = require('./controllers/sessionController');
@@ -55,6 +56,13 @@ cookieController.setSSIDCookie,
     //not going to redirect, send a response of user info
     res.redirect('/');
 });
+
+
+//**  Message Submit for database storage and translation  **/
+app.post('/send', translationController.createSentMessage, translationController.sendForTranslation, translationController.createTranslatedMessage, (req, res) =>{
+    console.log('anonymous function fired');
+    res.sendStatus(200);
+})
 
 //route handler to serve the basic file
 app.get('/', (req, res) => {
