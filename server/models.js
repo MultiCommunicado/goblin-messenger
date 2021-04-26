@@ -34,10 +34,11 @@ const transMessageSchema = new Schema({
 const TransMess = mongoose.model('trans_messages', transMessageSchema);
 
 const userSchema = new Schema({
-    username: {type: String},
-    password: {type: String}
-    // username: {type: String, required: true, unique: true},
-    // password: {type: String, required: true}
+    // username: {type: String},
+    // password: {type: String}
+    username: {type: String, required: true, unique: true},
+    password: {type: String, required: true},
+    language: {type: String, required: true}
   });
   
   const User = mongoose.model('User', userSchema);
