@@ -31,8 +31,11 @@ const mainReducer = (state = initialState, action) => {
 
         case types.LOGIN:
             // login user
+            const { _id, username } = action.payload;
+            user = { _id: _id, username: username }
             return {
                 ...state,
+                user
             }
 
         case types.SIGNUP_STATE:
