@@ -3,6 +3,11 @@ const { Translate } = require('@google-cloud/translate').v2;
 const path = require('path');
 const translationController = {};
 const projectId = '106748634897244400754';
+//the service account file is the file associated with the project on Whit's google drive account
+//get in contact with him to figure out how to get a copy that won't be put on github for security reasons
+//or to start your own account and set up the serviceAccountFile
+//just make sure to not go over 500,000 characters translated, which I know is a lot
+//but just try to avoid sending looping calls to translate, ya feel?
 const keyFilename = path.resolve(__dirname, './../serviceAccountFile.json')
 const tranlsate = new Translate({projectId, keyFilename});
 
