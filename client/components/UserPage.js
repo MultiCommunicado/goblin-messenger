@@ -13,7 +13,7 @@ const UserPage = props => {
                 break;
             }
             console.log(props.messages.received)
-            for (let i = 0; i < props.messages.received.length; i++) {
+            for (let i = props.messages.received.length-1; i >=0; i--) {
                 content.push(<MessageBox id={i} username={'From: ' + props.messages.received[i].senderUsername} message={props.messages.received[i]}/>)
             }
             break;
@@ -24,7 +24,7 @@ const UserPage = props => {
                 break;
             }
             // create a new message for every message received
-            for (let i = 0; i < props.messages.sent.length; i++) {
+            for (let i = props.messages.sent.length-1; i >=0; i--) {
                 content.push(<MessageBox id={i} username={'To: ' + props.messages.sent[i].receiverUsername} message={props.messages.sent[i]}/>)
             }
             break;
@@ -43,8 +43,8 @@ const UserPage = props => {
                 <div className="userNavBar">
                 <button className="logoutButton" onClick={() => props.logout(null)}>Logout</button>
                 <button className="userNavBarButton" onClick={() => props.newView('newmessage')}>Create New</button>
-                <button className="userNavBarButton" onClick={props.sentMessagesClick}>Sent Messages</button>
-                <button className="userNavBarButton" onClick={props.myMessagesClick}>My messages</button>
+                <button className="userNavBarButton" onClick={() => props.newView('sentmessages')}>Sent Messages</button>
+                <button className="userNavBarButton" onClick={() => props.newView('userpage')}>My messages</button>
                 </div>
             <div>
                 {content}
