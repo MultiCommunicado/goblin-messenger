@@ -4,27 +4,38 @@ import * as types from '../actions/actionTypes.js';
 const initialState = {
     user: null,
     login_state: null,
-    signup_state: null
+    signup_state: null,
+    info: null,
+    messages: {},
+    view: 'userpage'
 }
 
 const mainReducer = (state = initialState, action) => {
     // declare state constants
     let login_state;
+    let user;
+    let view;
 
     switch (action.type) {
 
         case types.LOGIN_STATE:
             // user is logged in
-            login_state = true;
+            user = state.user;
+            if (action.payload === null) user = null;
+            login_state = action.payload;
             return {
                 ...state,
-                login_state
+                login_state,
+                user
             }
 
         case types.LOGIN:
             // login user
+            const { _id, username } = action.payload;
+            user = { _id: _id, username: username }
             return {
                 ...state,
+                user
             }
 
         case types.SIGNUP_STATE:
@@ -42,6 +53,13 @@ const mainReducer = (state = initialState, action) => {
             return {
                 ...state,
                 login_state
+            }
+        
+        case types.VIEW:
+            view = action.payload;
+            return {
+                ...state,
+                view
             }
 
         default:

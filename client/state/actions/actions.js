@@ -1,13 +1,15 @@
 import * as types from './actionTypes.js';
 
 // action to update the current login state (is a user logged in?)
-export const loggedinState = () => ({
-    type: types.LOGIN_STATE
+export const loggedinState = (info) => ({
+    type: types.LOGIN_STATE,
+    payload: info
 })
 
 // action to login user
-export const login = () => ({
-    type: types.LOGIN
+export const login = (user) => ({
+    type: types.LOGIN,
+    payload: user
 })
 
 
@@ -20,6 +22,12 @@ export const signupState = (bool) => ({
 // action to signup user (log them in)
 export const signup = () => ({
     type: types.SIGNUP
+})
+
+// action to signup user (log them in)
+export const view = (view) => ({
+    type: types.VIEW,
+    payload: view
 })
 
 // more functions

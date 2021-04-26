@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../logo.png';
 
 //have signup and password input field 
 //with "signup" button and signup link
@@ -6,13 +7,14 @@ import React from 'react';
 //referred to as ISO language codes, specifically the 639-1 which specify how the API
 //knows what language the message sent is in, and what the recipient's language to translate to is
 const Signup = props => (
-    <div className="loginSignup">
-        <div className="loginSignupForm">
-            <form method="POST" action='/signup'>
+    <div landingPageLogo>
+        <img src={logo} alt="Multicommunicado"/>
+        <div className="loginSignup">
+            <div className="loginSignupForm">
                 <h1>Signup</h1>
-                <input name="username" type="text" placeholder="username"></input><br/>
-                <input name="password" type="password" placeholder="password"></input><br/>
-                <select className="Select" id="usersLanguage" name="language">
+                <input className="inputForm" id="userSignup" type="text" placeholder="username"></input><br/>
+                <input className="inputForm" id="passSignup" type="password" placeholder="password"></input><br/>
+                <select className="inputForm" id="userLanguage" name="language">
                 <option value="en"> English </option>
                     <option value="fr"> French </option>
                     <option value="ko"> Korean </option>
@@ -33,8 +35,8 @@ const Signup = props => (
                     <option value="hu"> Hungarian </option>
                     <option value="it"> Italian </option>
                 </select>
-                <input  type="submit" value="Create User"></input>
-            </form>
+                <button className="loginSignupButton" onClick={props.signup}>Sign Up</button>
+            </div>
         </div>
     </div>
 );

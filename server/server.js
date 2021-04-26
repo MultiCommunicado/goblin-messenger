@@ -8,19 +8,23 @@ const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController');
 const sessionController = require('./controllers/sessionController');
 const bodyParser = require('body-parser');
-// const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 
 const PORT = 3000;
 
 // app.use(cors());
 
+//** Serve all compiled files when running the production build **/
+app.use(express.static(path.resolve(__dirname, '../client')));
+app.use('/build', express.static(path.join(__dirname, '../build')));
+
 //** Automatically parse urlencoded body content from incoming requests and place it in req.body **//
+app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(express.json());
 
 //** adds middleware to parse cookies from the HTTP request **//
-// app.use(cookieParser());
+app.use(cookieParser());
 
 //** Sign Up **//
 app.get ('/signup', (req, res) => {
@@ -52,10 +56,10 @@ sessionController.startSession,
     // then set cookie
 
 cookieController.setSSIDCookie,
-(req, res) => {
+(req, res) => 
     //not going to redirect, send a response of user info
-    res.redirect('/');
-});
+    res.status(200).json(res.locals)
+);
 
 
 //**  Message Submit for database storage and translation  **/
