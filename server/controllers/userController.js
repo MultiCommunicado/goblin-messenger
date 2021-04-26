@@ -42,24 +42,23 @@ userController.verifyUser = (req, res, next) => {
     console.log(`this is the verifyUser request username: ${req.body.username} password: ${req.body.password}`)
     //send a req to the db and save the username & pw in res.local
     const { username, password } = req.body;
+
     // const username = req.body.username;
     // const password = req.body.password;
 
     try { 
         User.findOne({ username }, (err, response ) => {
-            console.log( password)
+            console.log(password)
             console.log(`This is the verify user response from the db: ${response}`)
-            if (response === null) {res.redirect('/signup')};
-            if (password === response.password) {
+            if (response === null) {
+                res.locals.userUnknown = true;
+            } else if (password === response.password) {
                 console.log(`User logged in as username: ${username}`)
                 res.locals.user = response;
-            } else return next({
-                log: `userController.verifyUser: ERROR: Password does not match`,
-                message: { err: 'userController.verifyUser: ERROR: Password does not match.' }
-            })
+            } else res.locals.noMatch = true;
             return next();
-        })
-    } 
+            })
+        }
     catch (err) {
         return next(err);
     }
