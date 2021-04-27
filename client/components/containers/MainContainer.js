@@ -6,9 +6,10 @@ import * as actions from '../../state/actions/actions.js';
 import { connect } from 'react-redux';
 
 const mapStateToProps = store => ({
+    //consider renaming some of these pieces of state or the functions to be clear
     user: store.message.user,
     loggedIn: store.message.login_state,
-    signingUp: store.message.signup_state
+    signingUp: store.message.signup_state 
 })
 
 const dispatchStateToProps = dispatch => ({
@@ -19,13 +20,14 @@ const dispatchStateToProps = dispatch => ({
 })
 
 class MainContainer extends Component {
-    constructor(props) {
+  constructor(props) {
         super(props)
         this.userSignedUp = this.userSignedUp.bind(this);
         this.userLoggedIn = this.userLoggedIn.bind(this);
     }
 
     userSignedUp() {
+      //grab user info from login form & create user Object
         const username = document.getElementById("userSignup");
         const password = document.getElementById("passSignup");
         const language = document.getElementById("userLanguage");
@@ -33,6 +35,7 @@ class MainContainer extends Component {
         newUser.username = username.value;
         newUser.password = password.value;
         newUser.language = language.value;
+        //post request to signup to create the new user
         fetch('/signup', {
             method: 'POST',
             headers: {
@@ -42,7 +45,8 @@ class MainContainer extends Component {
             })
         .then(resp => resp.json())
         .then(data => {
-            //check if user created succesfully, then login
+            //check if user created succesfully, then login, 
+            // (?) then clear the values from the object for safety
             this.props.login(data);
             console.log(this.props.loggedIn)
             username.value = '';
@@ -52,11 +56,13 @@ class MainContainer extends Component {
     }
 
     userLoggedIn() {
+        //get user info from form and create object
         const username = document.getElementById("userLogin");
         const password = document.getElementById("passLogin");
         const user = {};
         user.username = username.value;
         user.password = password.value;
+        //fetch post request to auth
         fetch('/login', {
             method: 'POST',
             headers: {
@@ -87,7 +93,7 @@ class MainContainer extends Component {
             // return messenger container
             return (<MessageContainer />)
         }
-        if (this.props.signingUp) {
+        if (this.props.signingUp) { // === 'true'
             // return signup page
             return (<Signup signup={this.userSignedUp}/>)
         } else {
