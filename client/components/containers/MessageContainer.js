@@ -28,7 +28,7 @@ class MessageContainer extends Component {
 
     sentMessagesButton() {
         //fetch new messages
-        fetch('/messages')
+        fetch('/messages:username')
         .then(resp => resp.json())
         .then(data => {
             console.log(data)
