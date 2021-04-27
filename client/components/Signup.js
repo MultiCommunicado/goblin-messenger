@@ -15,7 +15,7 @@ const Signup = props => (
                 <input className="loginInput" id="userSignup" type="text" placeholder="username"></input><br/>
                 <input className="loginInput" id="passSignup" type="password" placeholder="password"></input><br/>
                 <select className="loginInput" id="userLanguage" name="language">
-                <option value="en"> English </option>
+                    <option value="en"> English </option>
                     <option value="fr"> French </option>
                     <option value="ko"> Korean </option>
                     <option value="es"> Spanish </option>
