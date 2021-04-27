@@ -31,6 +31,7 @@ class MessageContainer extends Component {
         fetch('/messages')
         .then(resp => resp.json())
         .then(data => {
+            console.log(data)
             this.props.updateMessages(data);
             this.props.newView('sentmessages');
         })
@@ -41,6 +42,7 @@ class MessageContainer extends Component {
         fetch('/messages')
         .then(resp => resp.json())
         .then(data => {
+            console.log(data)
             this.props.updateMessages(data);
             this.props.newView('userpage');
         })
@@ -76,10 +78,11 @@ class MessageContainer extends Component {
             else if (data.noMessage) {this.props.userInfo('noMessage')}
             else if (data.userNotFound) {this.props.userInfo('userUnknown')}
             else {
+                console.log('new messages', data)
                 recipient.value = '';
                 newmessage.value = '';
-                this.props.updateMessages(data)
-                alert('Message sent!');
+                this.props.updateMessages(data.messages)
+                // alert('Message sent!');
             }
         })
         .catch(err => console.log('Error sending new message! ERROR: ', err));

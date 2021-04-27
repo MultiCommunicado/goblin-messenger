@@ -71,6 +71,7 @@ class MainContainer extends Component {
             if (data.noMatch) {this.props.nowLoggedIn('wrongPassword')}
             else if (data.userUnknown) {this.props.nowLoggedIn('unknownUser')}
             else {
+                this.props.nowSigningUp(null);
                 username.value = '';
                 password.value = '';
                 this.props.login(data)
