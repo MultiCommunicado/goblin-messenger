@@ -27,3 +27,6 @@
 - SIGNUP
 - USER_INFO
 - UPDATE_MESSAGES
+
+
+### Jest set up 
