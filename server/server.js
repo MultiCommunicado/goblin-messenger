@@ -31,6 +31,46 @@ app.get ('/signup', (req, res) => {
     res.render('./..client/signup', {error : null});
 });
 
+
+app.get ('/messages/:username', 
+    //gets user info based on the cookie associated with get request
+    cookieController.findUserByCookie, 
+    //uses user info from previous middleware to 
+    translationController.getMessages, 
+    //sends along pertinent info
+    (req, res) =>{
+        console.log(req.params.username)
+        res.status(200).json(res.locals);
+})
+
+//Get request, ask db for filterd messages. 
+/* 
+a single array, where 
+(senderUsername = myUsername OR senderUsername = friendUsername) 
+AND (receiverUsername = friendUsername  OR receiverUsername = myUsername)
+
+obj {
+    
+}
+
+*/
+/*
+{
+array1 ={
+senderUsername = myUsername 
+receiverUsername = friendUsername 
+messagelanduger for myusername
+}
+
+array2 = {
+senderUsername = friendUsername
+receiverUsername = myUsername
+}
+}
+*/
+
+
+
 //
 app.get ('/messages', 
     //gets user info based on the cookie associated with get request
