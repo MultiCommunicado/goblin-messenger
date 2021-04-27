@@ -2,4 +2,9 @@ node_modules
 build
 .DS_Store
 server/.DS_Store
+<<<<<<< HEAD
 pandawhaleiterationproject-b00ec21fa4dd.json
+=======
+server/serviceAccountFile.json
+package-lock.json
+>>>>>>> 736b5c312bc2a30fe561f7c3f1c387e6e8a2b76f
