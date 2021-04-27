@@ -5,3 +5,5 @@ server/.DS_Store
 server/serviceAccountFile.json
 server/pandawhaleiterationproject-b00ec21fa4dd.json
 package-lock.json
+server/serviceAccountFile.json
+package-lock.json

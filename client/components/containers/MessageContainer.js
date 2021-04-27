@@ -29,7 +29,7 @@ class MessageContainer extends Component {
     /** Why are sentMessages and myMessages the exact same function (excpet that they direct to a new view state)  */
     sentMessagesButton() {
         //fetch new messages
-        fetch('/messages')
+        fetch('/messages:username')
         .then(resp => resp.json())
         .then(data => {
             console.log(data)
