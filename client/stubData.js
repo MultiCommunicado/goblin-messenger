@@ -34,6 +34,4 @@ const conversationMessage = [
     translatedMessage:"Bitch",
     timeSent: 1619678952, //unix timestamp ()
   },
-
-
 ]

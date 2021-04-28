@@ -2,13 +2,13 @@ const{ User, TransMess, SentMess }= require('../models');
 const { Translate } = require('@google-cloud/translate').v2;
 const path = require('path');
 const translationController = {};
-const projectId = '102119266175546205385';
+const projectId = '112305914504973967363';
 //the service account file is the file associated with the project on Whit's google drive account
 //get in contact with him to figure out how to get a copy that won't be put on github for security reasons
 //or to start your own account and set up the serviceAccountFile
 //just make sure to not go over 500,000 characters translated, which I know is a lot
 //but just try to avoid sending looping calls to translate, ya feel?
-const keyFilename = path.resolve(__dirname, './../pandawhaleiterationproject-b00ec21fa4dd.json')
+const keyFilename = path.resolve(__dirname, './../pandawhaleiterationproject-ce75c9c97be2.json')
 const tranlsate = new Translate({projectId, keyFilename});
 
 //function that calls to google Tranlsate API
