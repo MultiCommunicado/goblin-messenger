@@ -16,9 +16,31 @@ userController.getAllUsers = (req, res, next) => {
     }
 };
 
+userController.findOneUser = (req, res, next) => {
+  console.log('req body', req.body);
+
+  User.findOne({ username: req.body.username })
+    .then(data => {
+      console.log('data', data);
+      if (data) {
+        console.log('existing user:', data);
+        res.locals.signUpWithExistingUser = true;
+      }
+      else res.locals.signUpWithExistingUser = false;
+      return next();
+    })
+    .catch(
+      err => next({
+          log: `error in userController.findOneUser: ${err}`,
+          message: {err: `error in findOneUser controller`}
+      })
+    );
+}
+
 userController.createUser = async (req, res, next) => {
     console.log(req.body)
     const { username, password, language } = req.body;
+    if (res.locals.signUpWithExistingUser) return next();
     if(username === ''){
         res.locals.noUsername = true;
         res.json(res.locals);
@@ -32,6 +54,7 @@ userController.createUser = async (req, res, next) => {
         res.json(res.locals);
     }
 
+
     try {
         console.log(`we're in the userController try statement`)
         const newUser = await User.create({ username, password, language });
@@ -40,7 +63,7 @@ userController.createUser = async (req, res, next) => {
     }   catch (err) {
         User.findOne({ username }, (err, response) => {
             if (username === response) {
-                return res.next(err, {
+                return next(err, {
                     log: `userController.createUser: ERROR: User might already exsist`,
                     message: { err: 'userController.createUser: ERROR: User might already exsist.' }
                 });
