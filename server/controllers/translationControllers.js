@@ -107,7 +107,8 @@ translationController.createTranslatedMessage = async (req, res, next) => {
         receiverLang: res.locals.target.language,
         input: res.locals.translation
     })
-    res.locals.user = res.locals.target;
+    res.locals.user = {};
+    res.locals.user._id = req.body.id;
     next();
 }
 
