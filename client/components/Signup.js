@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../logo.png';
+import logo from '../img/logo.svg';
 
 //have signup and password input field 
 //with "signup" button and signup link
@@ -8,14 +8,14 @@ import logo from '../logo.png';
 //knows what language the message sent is in, and what the recipient's language to translate to is
 const Signup = props => (
     <div className="loginsignuppage">
-        <img src={logo} alt="Multicommunicado"/>
+        <img src={logo} alt="Multicommunicado" />
         <div className="loginSignup">
             <div className="loginSignupForm">
                 <h1>Signup</h1>
-                <input className="loginInput" id="userSignup" type="text" placeholder="username"></input><br/>
-                <input className="loginInput" id="passSignup" type="password" placeholder="password"></input><br/>
+                <input className="loginInput" id="userSignup" type="text" placeholder="username"></input><br />
+                <input className="loginInput" id="passSignup" type="password" placeholder="password"></input><br />
                 <select className="loginInput" id="userLanguage" name="language">
-                <option value="en"> English </option>
+                    <option value="en"> English </option>
                     <option value="fr"> French </option>
                     <option value="ko"> Korean </option>
                     <option value="es"> Spanish </option>
@@ -41,5 +41,5 @@ const Signup = props => (
     </div>
 );
 
-    
-export default Signup; 
+
+export default Signup;
