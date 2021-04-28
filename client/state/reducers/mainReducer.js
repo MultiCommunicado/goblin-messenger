@@ -7,7 +7,7 @@ const initialState = {
     signup_state: null,
     info: null,
     messages: {},
-    view: 'userpage',
+    view: 'userpage', //this state takes exact string inputs to 
     user_info: null
 }
 
