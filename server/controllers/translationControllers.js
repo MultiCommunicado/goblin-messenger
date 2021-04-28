@@ -2,19 +2,22 @@ const{ User, TransMess, SentMess }= require('../models');
 const { Translate } = require('@google-cloud/translate').v2;
 const path = require('path');
 const translationController = {};
-const projectId = '106748634897244400754';
+const projectId = '112305914504973967363';
 //the service account file is the file associated with the project on Whit's google drive account
 //get in contact with him to figure out how to get a copy that won't be put on github for security reasons
 //or to start your own account and set up the serviceAccountFile
 //just make sure to not go over 500,000 characters translated, which I know is a lot
 //but just try to avoid sending looping calls to translate, ya feel?
-const keyFilename = path.resolve(__dirname, './../serviceAccountFile.json')
+const keyFilename = path.resolve(__dirname, './../pandawhaleiterationproject-ce75c9c97be2.json')
 const tranlsate = new Translate({projectId, keyFilename});
 
 //function that calls to google Tranlsate API
 
 async function textTranslate(text, target) {
+    console.log(`this is before api call`)
   let translation = await tranlsate.translate(text, target);
+  console.log(`this is after api call`)
+
   console.log('Translation:' + translation);
   //the returned value is an array with the first index being a string,
   //the second index being data about the call
@@ -106,6 +109,8 @@ translationController.createTranslatedMessage = async (req, res, next) => {
         receiverId: res.locals.target._id,
         receiverLang: res.locals.target.language,
         input: res.locals.translation
+
+
     })
     res.locals.user = res.locals.target;
     next();
@@ -116,6 +121,8 @@ translationController.createTranslatedMessage = async (req, res, next) => {
 
 translationController.getMessages = async (req, res, next) => {
     if(res.locals.user){
+        console.log(req.params.username)
+
         res.locals.messages = {};
         res.locals.messages.received = await TransMess.find({receiverId: res.locals.user._id});
         res.locals.messages.sent = await SentMess.find({senderId: res.locals.user._id});

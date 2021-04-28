@@ -23,7 +23,13 @@ const sentMessageSchema = new Schema({
     receiverUsername: {type: String, required: true},
     receiverId: {type: String, required: true},
     receiverLang: {type: String, required: true},
-    input: {type: String, required: true}
+    // input: {type: String, required: true}
+
+    //iteration idea
+    sentMessage: {type: String, required: true},
+    translatedMessage: {type: String, required: true}
+
+
 });
 const SentMess = mongoose.model('sent_messages', sentMessageSchema);
 
