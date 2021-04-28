@@ -82,6 +82,7 @@ class MessageContainer extends Component {
                 recipient.value = '';
                 newmessage.value = '';
                 this.props.updateMessages(data.messages)
+                // messages has a property sent and received,
                 // alert('Message sent!');
             }
         })

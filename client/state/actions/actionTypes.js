@@ -1,7 +1,17 @@
-export const LOGIN = "LOGIN";
-export const LOGIN_STATE = "LOGIN_STATE";
-export const SIGNUP = "SIGNUP";
-export const SIGNUP_STATE = "SIGNUP_STATE";
-export const VIEW = "VIEW";
-export const USER_INFO = "USER_INFO";
-export const UPDATE_MESSAGES = "UPDATE_MESSAGES";
+const LOGIN = "LOGIN";
+const LOGIN_STATE = "LOGIN_STATE";
+const SIGNUP = "SIGNUP";
+const SIGNUP_STATE = "SIGNUP_STATE";
+const VIEW = "VIEW";
+const USER_INFO = "USER_INFO";
+const UPDATE_MESSAGES = "UPDATE_MESSAGES";
+
+module.exports = {
+    LOGIN,
+    LOGIN_STATE,
+    SIGNUP,
+    SIGNUP_STATE,
+    VIEW,
+    USER_INFO,
+    UPDATE_MESSAGES
+}

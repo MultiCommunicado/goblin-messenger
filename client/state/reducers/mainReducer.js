@@ -1,12 +1,18 @@
 // import actions
-import * as types from '../actions/actionTypes.js';
+// import * as types from '../actions/actionTypes.js';
+const types = require('../actions/actionTypes.js')
 
 const initialState = {
     user: null,
     login_state: null,
     signup_state: null,
     info: null,
-    messages: {},
+    // user: [user1, user2, blah blah]
+    messages: { 
+        // key of user1: [{message between currentUSer and user1 in currentUser's lang}, {next mess},...]
+        // sent: [],
+        // received: [],
+     },
     view: 'userpage',
     user_info: null
 }
@@ -89,4 +95,4 @@ const mainReducer = (state = initialState, action) => {
     }
 }
 
-export default mainReducer;
+module.exports = mainReducer;

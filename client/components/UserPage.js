@@ -5,6 +5,8 @@ import logo from '../logo.png';
 
 
 const UserPage = props => {
+    let clickedConvos = false;
+    let clickedUser = false;
     let content = [];
     switch (props.view) {
         case "userpage":
@@ -34,22 +36,46 @@ const UserPage = props => {
             break;
     }
     return (
-        <div>
-        <div className="userPageLogo"> 
-            <img id="userPageLogo" src={logo} alt="Multicommunicado"/>
-        </div>
+        <div className="userPage">
             <div className="userPageContainer">
-                
                 <div className="userNavBar">
-                <button className="logoutButton" onClick={() => props.logout(null)}>Logout</button>
-                <button className="userNavBarButton" onClick={() => props.newView('newmessage')}>Create New</button>
-                <button className="userNavBarButton" onClick={() => props.newView('sentmessages')}>Sent Messages</button>
-                <button className="userNavBarButton" onClick={() => props.newView('userpage')}>My messages</button>
+                    <div className="userPageLogo"> 
+                        <img id="userPageLogo" src={logo} alt="Multicommunicado"/>
+                    </div>
+                    <div>
+                        <button className="userNavBarButton" onClick={() => props.newView('newmessage')}>New Message</button>
+                    </div>
+                    <div>
+                        <button className="userNavBarButton" onClick={() => props.newView('sentmessages')}>Sent Messages</button>
+                    </div>
+                    <div>
+                        <button className="userNavBarButton" onClick={() => {
+                            props.newView('userpage');
+                            clickedConvos=true
+                            }}>Conversations</button>
+                    </div>
+                    <div>
+                        <button className="logoutButton" onClick={() => props.logout(null)}>Log Out</button>
+                    </div>
                 </div>
-            <div>
+                <div id="voyage">
+                    <p id="copyright">© MultiDangerNoodle LLC,<br></br>  a subsidiary of Voyáge, Inc.</p>
+                </div>
+            </div>
+        {/* if (clickedConvos===true) { */}
+            <div className="userPageContainer" id="convoBar">
+                <div className="userNavBar">
+                    <div>
+                        <button className="userNavBarButton" onClick={() => {
+                            clickedUser = true;
+                        }}>Akiko2</button>
+                    </div>
+                </div>
+            </div>
+        {/* if (clickedUser===true) { */}
+            <div className="content">
                 {content}
             </div>
-        </div>
         </div>
     );
 }

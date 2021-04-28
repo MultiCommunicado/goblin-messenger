@@ -4,9 +4,13 @@
   "description": "Internation communications device",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "start": "cross-env NODE_ENV=production node server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "concurrently \"cross-env NODE_ENV=development webpack serve\" \"cross-env NODE_ENV=development nodemon server/server.js\""
+  },
+  "jest": {
+    "verbose": true
   },
   "repository": {
     "type": "git",
@@ -30,27 +34,34 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^5.12.5",
+    "mongoose": "^5.12.6",
     "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-redux": "^7.2.3",
-    "redux": "^4.0.5"
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",
     "@babel/preset-env": "^7.13.15",
     "@babel/preset-react": "^7.13.13",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.2.2",
     "concurrently": "^6.0.2",
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.4",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.6.2",
     "file-loader": "^6.2.0",
     "image-webpack-loader": "^7.0.1",
+    "jest": "^23.6.0",
+    "jest-puppeteer": "^3.4.0",
     "nodemon": "^2.0.7",
     "redux-devtools-extension": "^2.13.9",
     "style-loader": "^2.0.0",
-    "webpack": "^5.35.1",
+    "supertest": "^3.3.0",
+    "webpack": "^5.36.0",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2"
   }
