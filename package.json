@@ -6,7 +6,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "concurrently \"cross-env NODE_ENV=development webpack serve\" \"cross-env NODE_ENV=development nodemon server/server.js\""
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack serve\" \"cross-env NODE_ENV=development nodemon server/server.js\"",
+    "test": "jest --verbose true"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,8 @@
   "author": "Joseph, Jenessa, Whit, Achille",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.13.15",
+    "@babel/runtime": "^7.13.17",
     "@google-cloud/translate": "^6.2.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
