@@ -18,8 +18,8 @@ const conversationMessage = [
     receiverUsername:"goku",
     receiverId:  "608622d8e574bf6e741ff32c",
     receiverLang: "es",
-    messageSent:"Hello Enemy",
-    translatedMessage:"Hola enemiga",
+    sentText:"Hello Enemy",
+    transText:"Hola enemiga",
     //https://stackoverflow.com/questions/36550263/how-create-a-date-field-with-default-value-as-the-current-timestamp-in-mongodb
     timeSent: 1619568952, //unix timestamp ()
   },
