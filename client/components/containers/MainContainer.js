@@ -47,10 +47,15 @@ class MainContainer extends Component {
         .then(data => {
             //check if user created succesfully, then login, 
             // (?) then clear the values from the object for safety
-            this.props.login(data);
-            console.log(this.props.loggedIn)
-            username.value = '';
-            password.value = '';
+            if (data.hasAccount) {
+              this.props.nowSigningUp(false);
+            }
+            else {
+              this.props.login(data);
+              console.log(this.props.loggedIn)
+              username.value = '';
+              password.value = '';
+            }
         })
         .catch(err => console.log('Error creating new user! ERROR: ', err));
     }
