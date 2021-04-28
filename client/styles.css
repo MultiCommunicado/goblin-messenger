@@ -1,6 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
 * {
     font-family: 'Montserrat', sans-serif;
@@ -13,10 +12,12 @@ h1 {
 }
 
 body {
-    color: #c4d0f0;
+    color: rgb(23, 69, 120);
     text-decoration: none;
     margin: 0px;
-    background: linear-gradient(30deg, rgba(18,12,134,1) 0%, rgba(99,103,194,1) 50%, rgba(255,255,255,1) 100%);
+    background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/moroccan-flower-dark.png');
+    background-repeat: repeat;
+    /* background: linear-gradient(30deg, rgb(36, 30, 139) 0%, rgb(29, 33, 141) 50%, rgb(160, 146, 219) 100%); */
 }
 
 .loginSignup {
@@ -36,7 +37,8 @@ body {
     background: whitesmoke;
     padding: 10px 50px;
     border-radius: 25px;
-    box-shadow: 0px 0px 10px 5px rgb(42, 65, 143) inset;
+    border: 5px solid #1C305D;
+    /* box-shadow: 0px 0px 10px 5px rgb(42, 65, 143) inset; */
     box-sizing: border-box;
 }
 
@@ -45,21 +47,11 @@ body {
     margin-top: 100px;
     min-width: 579px;
     min-height: 200px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px 5px rgb(42, 65, 143);
+    border-radius: 20px;
+    border: 5px solid #1C305D;
+    /* box-shadow: 0px 0px 10px 5px rgb(42, 65, 143); */
     display: block;
     width: 50%;
-}
-
-.userPageLogo img { 
-    margin: 50px auto;
-    width: 217px;
-    height: 75px;
-    border-radius: 8px;
-    /* box-shadow: 0px 0px 10px 5px rgb(42, 65, 143); */
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    display: block;
-   
 }
 
 .loginInput {
@@ -107,24 +99,22 @@ body {
 .loginSignupButton {
     margin: 10px 20px;
     justify-content: center;
-    background-color: #5d7bcc; 
-    border: none;
-    color: white;
+    background-color:aliceblue; 
+    border: 2px solid rgb(23, 69, 120);
+    color:#1C305D;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     border-radius: 12px;
     display: inline-block;
     font-size: 16px;
-    transition-duration: 0.4s;
-
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    transition-duration: 0.2s;
 }
 
 .loginSignupButton:hover {
-    background-color: transparent; 
-    border-color: #5d7bcc;
-    color: #5d7bcc;
+    background-color: #5d7bcc; 
+    border-color: rgb(23, 69, 120);
+    color: aliceblue;
 }
 
 .info {
@@ -145,13 +135,39 @@ body {
     display: flex;
 }
 
+.userPage {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    height: 100%;
+}
+
 .userPageContainer {
     font-size: medium;
-    align-items: center;
-    justify-content: center;
+    align-self: flex-start;
+    align-items: flex-start;
+    justify-content: space-between;
     display: flex;
     flex-direction: column;
-    margin: 0px auto;
+    margin-left: 0;
+    height: 100%;
+    width:min-content;
+    background-color:rgb(23, 69, 120);
+    border-right: 2px solid aliceblue;
+}
+
+.userNavBar {
+    font-size: medium;
+    align-self: flex-start;
+    align-items: flex-start;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+
+.userPageLogo img { 
+    width: 250px;
+    display: block;
 }
 
 .newMessage {
@@ -163,53 +179,46 @@ body {
 }
 
 .userNavBarButton {
-    margin: 10px;
+    margin: 0;
     justify-content: center;
-    background-color: #5d7bcc; 
-    border: solid;
-    border: none;
-    color: white;
-    padding: 11.25px 24px;
-    text-align: center;
-    text-decoration: none;
+    color: aliceblue;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    text-align:left;
     display: inline-block;
-    font-size: 16px;
-    border-radius: 12px;
-    /* box-shadow: 0px 0px 10px 5px rgb(42, 65, 143); */
-
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    transition-duration: 0.4s;
+    font-size: 24px;
+    transition-duration: 0.2s;
+    border: none;
+    border-bottom: 1px solid aliceblue;
+    width: 250px;
+    background-color: transparent;
 }
 
 .userNavBarButton:hover {
-    background-color: whitesmoke; 
-    border-color: #5d7bcc;
-    color: #5d7bcc;
-
+    background-color: #5d7bcc;
 }
 
 .logoutButton {
-    margin: 10px;
+    margin: 0;
     justify-content: center;
-    background-color: #5d7bcc; 
-    border: solid;
-    border: none;
-    color: white;
-    padding: 11.25px 24px;
-    text-align: center;
-    text-decoration: none;
+    color: aliceblue;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    text-align:left;
     display: inline-block;
-    font-size: 16px;
-    border-radius: 12px;
-    /* box-shadow: 0px 0px 10px 5px rgb(42, 65, 143); */
-
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    transition-duration: 0.4s;
+    font-size: 24px;
+    transition-duration: 0.2s;
+    border: none;
+    border-bottom: 1px solid aliceblue;
+    background-color: transparent;
+    width: 250px;
+    margin-bottom: -300px;
 }
 
 .logoutButton:hover {
-    background-color: #df5210; 
-    border-color: #df5210;
+    color: #e05454; 
 }
 
 .sendButton {
@@ -225,10 +234,7 @@ body {
     display: inline-block;
     font-size: 16px;
     border-radius: 12px;
-    /* box-shadow: 0px 0px 10px 5px rgb(42, 65, 143); */
-
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    transition-duration: 0.4s;
+    transition-duration: 0.2s;
 }
 
 .sendButton:hover {
@@ -275,3 +281,24 @@ body {
 	left: calc(0.5vw - 50px);
 }
 
+.senderName {
+    color: aliceblue;
+}
+
+#copyright {
+    color: aliceblue;
+    padding-left: 10px;
+}
+
+#convoBar {
+    margin-left: 0;
+    border-right: 2px solid aliceblue;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+}
